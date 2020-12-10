@@ -1,9 +1,16 @@
-import React from 'react'
+import React from 'react';
 
-// import { Container } from './styles';
+import Home from './pages/home';
+
+import { GlobalStyles } from './assets/globalStyles';
 
 const App = () => {
-  return <h1>Hello World</h1>
-}
+  return (
+    <>
+      <Home />
+      <GlobalStyles />
+    </>
+  );
+};
 
-export default App
+export default App;

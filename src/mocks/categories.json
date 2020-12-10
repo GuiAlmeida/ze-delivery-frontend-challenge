@@ -1,0 +1,14 @@
+[
+  { "id": 0, "name": "#água" },
+  { "id": 1, "name": "#refrigerante" },
+  { "id": 2, "name": "#energético" },
+  { "id": 3, "name": "#vinho" },
+  { "id": 4, "name": "#cerveja" },
+  { "id": 5, "name": "#whisky" },
+  { "id": 6, "name": "#vodka" },
+  { "id": 7, "name": "#licor" },
+  { "id": 8, "name": "#tequila" },
+  { "id": 9, "name": "#gin" },
+  { "id": 10, "name": "#cachaça" },
+  { "id": 11, "name": "#petiscos" }
+]
