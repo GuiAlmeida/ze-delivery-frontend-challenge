@@ -9,7 +9,7 @@ module.exports = {
   resolve: {
     extensions: ['.js']
   },
-  entry: path.resolve(__dirname, 'src', 'index.js'),
+  entry: ['babel-polyfill', path.resolve(__dirname, 'src', 'index.js')],
   module: {
     rules: [
       {
@@ -24,6 +24,14 @@ module.exports = {
         use: [
           {
             loader: 'file-loader'
+          }
+        ]
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: 'react-svg-loader'
           }
         ]
       }

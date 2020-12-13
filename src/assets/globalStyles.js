@@ -3,6 +3,10 @@ import styled, { createGlobalStyle } from 'styled-components';
 import colors from './colors';
 
 export const GlobalStyles = createGlobalStyle`
+  html {
+    overflow-x: hidden;
+  }
+
   html, body, #root {
     height: 100%;
   }
@@ -16,8 +20,6 @@ export const GlobalStyles = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
-    scroll-behavior: smooth;
-    overflow-x: hidden;
   }
 
   table, th, td {
@@ -79,6 +81,23 @@ export const GlobalStyles = createGlobalStyle`
     padding: 15px 30px 14px;
   }
 
+  .button-link {
+    background-color: transparent;
+    font-size: 16px;
+    font-weight: 400;
+    color: ${colors.primary};
+
+    :hover {
+      text-decoration: underline;
+      opacity: 1;
+    }
+  }
+
+  button.disabled {
+    opacity: 0.3 !important;
+    cursor: default;
+  }
+
   button:hover,
   button:focus {
     outline: none;
@@ -106,21 +125,57 @@ export const GlobalStyles = createGlobalStyle`
     padding: 0;
   }
 
+  label, .label {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: ${colors.white};
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.04) 3px 3px 0px -1px;
+    outline: none !important;
+
+    .fa {
+      margin-left: 14px;
+      font-size: 20px;
+      color: #dddddd;
+    }
+  }
+
   input {
     width: 100%;
     background: none;
     border: none;
-    padding: 14px 12px;
+    padding: 16px 14px;
     outline: none;
-    -webkit-box-shadow: none;
-    box-shadow: none;
-    font-size: 14px;
-    font-weight: 300;
     font-family: 'Inter', sans-serif;
+    font-size: 16px;
+    font-weight: 300;
+    letter-spacing: 0.2px;
+    color: ${colors.dark};
+    cursor: text;
+  }
+
+  .errorMessage {
+    font-size: 14px;
+    margin-top: 10px;
+    margin-left: 5px;
+    color: #e50000;
   }
 
   input, textarea, button, select, a, div {
     -webkit-tap-highlight-color: rgba(0,0,0,0);
+  }
+
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+
+  input[type=number]::-webkit-inner-spin-button,
+  input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    margin: 0;
   }
 
   input:read-only { color: #B7B7B7 }
@@ -191,5 +246,26 @@ export const Container = styled.div`
       font-size: 20px;
       letter-spacing: -0.3px;
     }
+  }
+`;
+
+export const Input = styled.input`
+  width: 100%;
+  background-color: ${colors.white};
+  border-radius: 10px;
+  border: ${(props) =>
+    !props.error ? '1px solid #efefef' : `1px solid ${colors.red} !important`};
+  padding: 16px 14px;
+  outline: none;
+  box-shadow: rgba(0, 0, 0, 0.04) 3px 3px 0px -1px;
+
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0.2px;
+  color: ${colors.dark};
+
+  :focus {
+    border: 1px solid ${colors.primary};
   }
 `;

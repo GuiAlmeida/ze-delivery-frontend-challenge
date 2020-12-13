@@ -20,6 +20,8 @@ module.exports = {
     'prettier/prettier': 'error',
     'react/jsx-filename-extension': [1, { 'extensions': ['.js', '.jsx'] }],
     'react/jsx-one-expression-per-line': 'off',
-    'import/prefer-default-export': 'off'
+    'import/prefer-default-export': 'off',
+    'import/no-unresolved': 'off',
+    'jsx-a11y/anchor-is-valid': 0
   }
 };

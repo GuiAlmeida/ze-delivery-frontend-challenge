@@ -18,27 +18,27 @@ function Footer() {
             <h3 className="footer-section-subtitle">Categorias</h3>
             <ul className="footer-section-list">
               <li className="footer-section-list-item">
-                <a href="/" className="footer-section-link">
+                <a href="#" className="footer-section-link">
                   Cervejas
                 </a>
               </li>
               <li className="footer-section-list-item">
-                <a href="/" className="footer-section-link">
+                <a href="#" className="footer-section-link">
                   Destilados
                 </a>
               </li>
               <li className="footer-section-list-item">
-                <a href="/" className="footer-section-link">
+                <a href="#" className="footer-section-link">
                   Vinhos
                 </a>
               </li>
               <li className="footer-section-list-item">
-                <a href="/" className="footer-section-link">
+                <a href="#" className="footer-section-link">
                   Sem álcool
                 </a>
               </li>
               <li className="footer-section-list-item">
-                <a href="/" className="footer-section-link">
+                <a href="#" className="footer-section-link">
                   Petiscos
                 </a>
               </li>
@@ -48,22 +48,22 @@ function Footer() {
             <h3 className="footer-section-subtitle">Institucional</h3>
             <ul className="footer-section-list">
               <li className="footer-section-list-item">
-                <a href="/" className="footer-section-link">
+                <a href="#" className="footer-section-link">
                   Quem somos
                 </a>
               </li>
               <li className="footer-section-list-item">
-                <a href="/" className="footer-section-link">
+                <a href="#" className="footer-section-link">
                   Cidades atendidas
                 </a>
               </li>
               <li className="footer-section-list-item">
-                <a href="/" className="footer-section-link">
+                <a href="#" className="footer-section-link">
                   Carreiras
                 </a>
               </li>
               <li className="footer-section-list-item">
-                <a href="/" className="footer-section-link">
+                <a href="#" className="footer-section-link">
                   Imprensa
                 </a>
               </li>
@@ -74,22 +74,22 @@ function Footer() {
             <h3 className="footer-section-subtitle">Recursos</h3>
             <ul className="footer-section-list">
               <li className="footer-section-list-item">
-                <a href="/" className="footer-section-link">
+                <a href="#" className="footer-section-link">
                   Central de ajuda
                 </a>
               </li>
               <li className="footer-section-list-item">
-                <a href="/" className="footer-section-link">
+                <a href="#" className="footer-section-link">
                   Seja um parceiro
                 </a>
               </li>
               <li className="footer-section-list-item">
-                <a href="/" className="footer-section-link">
+                <a href="#" className="footer-section-link">
                   Termos de uso
                 </a>
               </li>
               <li className="footer-section-list-item">
-                <a href="/" className="footer-section-link">
+                <a href="#" className="footer-section-link">
                   Política de privacidade
                 </a>
               </li>

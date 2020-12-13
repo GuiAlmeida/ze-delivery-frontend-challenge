@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   FaBars,
   FaMapMarkerAlt,
@@ -7,10 +7,11 @@ import {
   FaGooglePlay
 } from 'react-icons/fa';
 
-import ScrollBox from '../../components/home/ScrollBox';
-import FeaturedProduct from '../../components/home/featuredProduct';
-import CoverageArea from '../../components/home/coverageArea';
-import Footer from '../../components/footer';
+import ScrollBox from '../../components/Home/ScrollBox';
+import FeaturedProduct from '../../components/Home/FeaturedProduct';
+import CoverageArea from '../../components/Home/CoverageArea';
+import Footer from '../../components/Footer';
+import AddressModal from '../../components/Home/AddressModal';
 import { categories, featuredProducts, coverageAreas } from '../../mocks';
 
 import { Container } from '../../assets/globalStyles';
@@ -19,8 +20,6 @@ import {
   Header,
   HeroSection,
   Form,
-  Label,
-  Input,
   FeaturedSection,
   AppSection,
   CoverageSection
@@ -35,13 +34,14 @@ import MockupApp from '../../assets/images/mockup_app.png';
 
 function Home() {
   const [navBarIsOpen, setNavBarIsOpen] = useState(false);
+  const addressModal = useRef(null);
 
   function handleNavBar() {
     setNavBarIsOpen(!navBarIsOpen);
   }
 
   function getAddress() {
-    console.log('search');
+    addressModal.current.openModal();
   }
 
   function openAppStore() {
@@ -86,10 +86,10 @@ function Home() {
               />
               <ul>
                 <li>
-                  <a href="/">Seja um parceiro</a>
+                  <a href="#">Seja um parceiro</a>
                 </li>
                 <li>
-                  <a href="/">Ajuda</a>
+                  <a href="#">Ajuda</a>
                 </li>
               </ul>
               <button type="button" className="button button-small">
@@ -124,14 +124,16 @@ function Home() {
             Confira nossas ofertas exclusivas feitas especialmente para você
           </h2>
           <Form>
-            <Label onClick={getAddress}>
+            <div
+              role="button"
+              className="label"
+              tabIndex={0}
+              onClick={getAddress}
+              onKeyPress={getAddress}
+            >
               <FaMapMarkerAlt className="fa fa-map-marker-alt" />
-              <Input
-                placeholder="Informe seu endereço"
-                disabled
-                value="Informe seu endereço"
-              />
-            </Label>
+              <input placeholder="Informe seu endereço" disabled />
+            </div>
             <button
               type="button"
               onClick={getAddress}
@@ -173,7 +175,7 @@ function Home() {
         <Container flexDirection="column">
           <div className="featured-section-coverage-areas-title">
             <h1 className="section-caption">Explore por cidades</h1>
-            <a href="/">Ver mais</a>
+            <a href="#">Ver mais</a>
           </div>
           <div className="featured-section-coverage-areas">
             {coverageAreas.map((product) => (
@@ -226,6 +228,8 @@ function Home() {
         </Container>
       </AppSection>
       <Footer />
+      <AddressModal />
+      <AddressModal ref={addressModal} />
     </Wrapper>
   );
 }

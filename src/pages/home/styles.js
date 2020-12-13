@@ -305,6 +305,15 @@ export const Form = styled.form`
   margin-top: 20px;
   margin-bottom: 15px;
 
+  .label {
+    margin-bottom: 15px;
+    cursor: text;
+  }
+
+  input {
+    pointer-events: none;
+  }
+
   .button {
     width: 100%;
   }
@@ -313,49 +322,21 @@ export const Form = styled.form`
     width: 100%;
     flex-direction: row;
 
+    .label {
+      margin-bottom: 0;
+      margin-right: 20px;
+    }
+
     .button {
       width: initial;
     }
   }
-`;
-
-export const Label = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  margin-bottom: 20px;
-  background-color: ${colors.white};
-  border-radius: 10px;
-  box-shadow: rgba(0, 0, 0, 0.04) 3px 3px 0px -1px;
-  cursor: pointer;
-
-  .fa {
-    margin-left: 14px;
-    font-size: 20px;
-    color: ${colors.primary};
-  }
-
-  @media screen and (min-width: 768px) {
-    margin-bottom: 0;
-    margin-right: 20px;
-  }
 
   @media screen and (min-width: 960px) {
-    max-width: 550px;
+    .label {
+      max-width: 550px;
+    }
   }
-`;
-
-export const Input = styled.input`
-  width: 100%;
-  background: none;
-  border: none;
-  padding: 16px 14px;
-  outline: none;
-  cursor: pointer;
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  letter-spacing: 0.2px;
-  color: #cccccc;
 `;
 
 export const FeaturedSection = styled.section`
