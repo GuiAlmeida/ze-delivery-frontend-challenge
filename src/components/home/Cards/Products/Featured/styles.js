@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import colors from '../../../assets/colors';
+import colors from '../../../../../assets/colors';
 
 export const Container = styled.button`
   min-height: 130px;

@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 
 import { Container } from './styles';
 
-import SkolPilsen from '../../../assets/images/skol_pilsen.png';
-import BrahmaDuploMalte from '../../../assets/images/brahma_duplo_malte.png';
-import JackDaniels from '../../../assets/images/jack_daniels.png';
+import SkolPilsen from '../../../../../assets/images/skol_pilsen.png';
+import BrahmaDuploMalte from '../../../../../assets/images/brahma_duplo_malte.png';
+import JackDaniels from '../../../../../assets/images/jack_daniels.png';
 
 function FeaturedProduct({ item, getAddress }) {
   return (

@@ -33,12 +33,16 @@ function Options({ visible, handlePage, closeModal }) {
         const expires = new Date();
         expires.setFullYear(expires.getFullYear() + 1);
 
-        setCookie('userAddress', JSON.stringify(address), {
-          path: '/',
-          expires
-        });
+        setCookie(
+          'userAddress',
+          JSON.stringify({ ...address, geolocation: true }),
+          {
+            path: '/',
+            expires
+          }
+        );
 
-        setLocationLoading(false);
+        window.location.href = '/products';
       });
     }, 1000);
   }

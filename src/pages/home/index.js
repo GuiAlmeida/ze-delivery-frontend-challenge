@@ -6,12 +6,13 @@ import {
   FaApple,
   FaGooglePlay
 } from 'react-icons/fa';
+import { useCookies } from 'react-cookie';
+import PropTypes from 'prop-types';
+import ScrollMenu from 'react-horizontal-scrolling-menu';
 
-import ScrollBox from '../../components/Home/ScrollBox';
-import FeaturedProduct from '../../components/Home/FeaturedProduct';
-import CoverageArea from '../../components/Home/CoverageArea';
+import FeaturedProductCard from '../../components/Home/Cards/Products/Featured';
 import Footer from '../../components/Footer';
-import AddressModal from '../../components/Home/AddressModal';
+import AddressModal from '../../components/Modal/Address';
 import { categories, featuredProducts, coverageAreas } from '../../mocks';
 
 import { Container } from '../../assets/globalStyles';
@@ -32,9 +33,10 @@ import ZeIcon2x from '../../assets/images/icon_ze@2x.png';
 import ZeLogo from '../../assets/images/logo_ze.png';
 import MockupApp from '../../assets/images/mockup_app.png';
 
-function Home() {
+function Home({ history }) {
   const [navBarIsOpen, setNavBarIsOpen] = useState(false);
   const addressModal = useRef(null);
+  const [cookies] = useCookies(['userAddress']);
 
   function handleNavBar() {
     setNavBarIsOpen(!navBarIsOpen);
@@ -65,6 +67,12 @@ function Home() {
       document.body.style.overflowY = '';
     }
   }, [navBarIsOpen]);
+
+  useEffect(() => {
+    if (cookies.userAddress) {
+      history.push('/products');
+    }
+  }, []);
 
   return (
     <Wrapper>
@@ -142,19 +150,24 @@ function Home() {
               Continuar
             </button>
           </Form>
-          <ScrollBox>
-            {categories.map((category, i) => (
-              <button
-                key={category.id}
-                type="button"
-                className="hero-section-category-card"
-                style={i + 1 === categories.length ? { marginRight: 0 } : {}}
-                onClick={getAddress}
-              >
-                {category.name}
-              </button>
-            ))}
-          </ScrollBox>
+          <div className="hero-section-categories">
+            <ScrollMenu
+              data={categories.map((category, i) => (
+                <button
+                  key={category.id}
+                  type="button"
+                  className="category-card"
+                  style={i + 1 === categories.length ? { marginRight: 0 } : {}}
+                  onClick={getAddress}
+                >
+                  {category.label}
+                </button>
+              ))}
+              hideArrows
+              alignCenter={false}
+              wheel={false}
+            />
+          </div>
         </div>
       </HeroSection>
       <FeaturedSection>
@@ -162,7 +175,7 @@ function Home() {
           <h1 className="section-caption">Os melhores do zé</h1>
           <div className="featured-section-products">
             {featuredProducts.map((product) => (
-              <FeaturedProduct
+              <FeaturedProductCard
                 key={product.id}
                 item={product}
                 getAddress={getAddress}
@@ -179,7 +192,9 @@ function Home() {
           </div>
           <div className="featured-section-coverage-areas">
             {coverageAreas.map((product) => (
-              <CoverageArea key={product.id} item={product} />
+              <a key={product.id} href={product.href}>
+                {product.name}
+              </a>
             ))}
           </div>
         </Container>
@@ -228,10 +243,13 @@ function Home() {
         </Container>
       </AppSection>
       <Footer />
-      <AddressModal />
       <AddressModal ref={addressModal} />
     </Wrapper>
   );
 }
+
+Home.propTypes = {
+  history: PropTypes.objectOf(PropTypes.any).isRequired
+};
 
 export default Home;

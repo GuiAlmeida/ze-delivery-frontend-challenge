@@ -5,11 +5,11 @@ import React, {
   useState
 } from 'react';
 
-import Modal from '../../Modal';
+import Modal from '../index';
 import Options from './Options';
 import List from './List';
 import Map from './Map';
-import Address from './Address';
+import Complete from './Complete';
 
 import { Container } from './styles';
 
@@ -58,7 +58,7 @@ const AddressModal = forwardRef((_, ref) => {
           handlePage={handlePage}
           setPrevPage={setPrevPage}
         />
-        <Address
+        <Complete
           address={address}
           visible={currentIndex === 3}
           prevPage={prevPage}

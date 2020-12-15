@@ -192,17 +192,22 @@ export const HeroSection = styled.section`
       font-weight: 300;
     }
 
-    .hero-section-category-card {
-      position: relative;
-      padding: 4px 6px;
-      margin-right: 10px;
-      background-color: #eeeeee;
-      color: #1d1d1d;
-      border-radius: 5px;
-      border: none;
-      outline: none;
-      font-size: 14px;
-      font-weight: 300;
+    .hero-section-categories {
+      width: 100%;
+      margin: 0 auto;
+
+      .category-card {
+        position: relative;
+        padding: 4px 6px;
+        margin-right: 10px;
+        background-color: #eeeeee;
+        color: #1d1d1d;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        font-size: 14px;
+        font-weight: 300;
+      }
     }
   }
 
@@ -256,6 +261,12 @@ export const HeroSection = styled.section`
         height: 120px;
         padding-bottom: 15px;
       }
+    }
+  }
+
+  @media screen and (min-width: 960px) {
+    .hero-section-content .hero-section-categories {
+      max-width: 716px;
     }
   }
 
@@ -381,6 +392,11 @@ export const CoverageSection = styled.section`
     grid-auto-columns: 1fr;
     gap: 15px;
     margin-top: 30px;
+
+    a {
+      color: #a2a1a1;
+      font-weight: 300;
+    }
   }
 
   @media screen and (min-width: 560px) {

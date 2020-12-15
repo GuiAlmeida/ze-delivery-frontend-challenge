@@ -225,6 +225,22 @@ export const GlobalStyles = createGlobalStyle`
   ::-ms-input-placeholder { color: #CCCCCC }
 
   ::placeholder { color: #CCCCCC }
+
+  .menu-item-wrapper:focus {
+    outline: none;
+  }
+
+  .scroll-menu-arrow {
+    position: relative;
+    transition: opacity 0.2s ease 0s;
+    z-index: 9999;
+  }
+
+  .scroll-menu-arrow--disabled {
+    opacity: 0;
+    pointer-events: none;
+    cursor: default;
+  }
 `;
 
 export const Container = styled.div`

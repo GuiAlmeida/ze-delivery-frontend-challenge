@@ -16,6 +16,7 @@ function Address({ address, visible, prevPage, handlePage }) {
   const [, setCookie] = useCookies();
   const [display, setDisplay] = useState(true);
   const [selectedAddressName, setSelectedAddressName] = useState(new Map());
+  const [buttonLoading, setButtonLoading] = useState(false);
   const { values, errors, handleChange, handleSubmit } = useForm(
     // eslint-disable-next-line no-use-before-define
     submit,
@@ -23,11 +24,14 @@ function Address({ address, visible, prevPage, handlePage }) {
   );
 
   function submit() {
+    setButtonLoading(true);
+
     const data = {
       ...address,
       streetNumber: values.streetNumber,
       complement: values.complement || '',
-      name: values.addressName
+      name: values.addressName,
+      geolocation: false
     };
 
     const expires = new Date();
@@ -37,6 +41,10 @@ function Address({ address, visible, prevPage, handlePage }) {
       path: '/',
       expires
     });
+
+    setTimeout(() => {
+      window.location.href = '/products';
+    }, 1000);
   }
 
   function onPressAddressName(name) {
@@ -119,7 +127,14 @@ function Address({ address, visible, prevPage, handlePage }) {
               <p className="errorMessage">Campo obrigatório *</p>
             )}
           </div>
-          <button type="submit" className="button button-large">
+          <button
+            type="submit"
+            className={
+              buttonLoading
+                ? 'button button-large disabled'
+                : 'button button-large'
+            }
+          >
             <span>Salvar endereço</span>
           </button>
         </form>
