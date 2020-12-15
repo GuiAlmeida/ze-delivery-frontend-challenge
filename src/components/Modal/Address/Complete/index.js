@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { FaAngleLeft, FaHome, FaMapMarkerAlt, FaMugHot } from 'react-icons/fa';
 import { useCookies } from 'react-cookie';
 import useForm from '../../../../utils/useForm';
-import { addressNames } from '../../../../mocks';
+import { addressNames } from '../../../../__mocks__';
 import validate from './formValidationRules';
 
 import { Input } from '../../../../assets/globalStyles';

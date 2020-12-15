@@ -13,7 +13,7 @@ import ScrollMenu from 'react-horizontal-scrolling-menu';
 import FeaturedProductCard from './Cards/Product';
 import Footer from '../../components/Footer';
 import AddressModal from '../../components/Modal/Address';
-import { categories, featuredProducts, coverageAreas } from '../../mocks';
+import { categories, featuredProducts, coverageAreas } from '../../__mocks__';
 
 import { Container } from '../../assets/globalStyles';
 import {
@@ -83,9 +83,9 @@ function Home({ history }) {
             className="navbar-button"
             onClick={handleNavBar}
           >
-            <FaBars className="fa fa-bars" />
+            <FaBars className="fa fa-bars" aria-label="Handle menu" />
           </button>
-          <div className="header-navbar-wrapper">
+          <nav className="header-navbar-wrapper">
             <div className="header-navbar-content">
               <img
                 src={ZeLogo}
@@ -104,7 +104,7 @@ function Home({ history }) {
                 Entrar
               </button>
             </div>
-          </div>
+          </nav>
         </Header>
         <div className="hero-section-background">
           <img
@@ -159,6 +159,7 @@ function Home({ history }) {
                   className="category-card"
                   style={i + 1 === categories.length ? { marginRight: 0 } : {}}
                   onClick={getAddress}
+                  data-testid={`featured-category-btn-${i}`}
                 >
                   {category.label}
                 </button>
@@ -248,8 +249,12 @@ function Home({ history }) {
   );
 }
 
+Home.defaultProps = {
+  history: null
+};
+
 Home.propTypes = {
-  history: PropTypes.objectOf(PropTypes.any).isRequired
+  history: PropTypes.objectOf(PropTypes.any)
 };
 
 export default Home;

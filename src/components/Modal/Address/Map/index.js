@@ -1,11 +1,6 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
 import PropTypes from 'prop-types';
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  Marker
-} from 'react-google-maps';
+import { withGoogleMap, GoogleMap, Marker } from 'react-google-maps';
 import { getGeocode } from 'use-places-autocomplete';
 import { FaAngleLeft } from 'react-icons/fa';
 import { GOOGLE_API_KEY } from '../../../../constants';
@@ -55,34 +50,32 @@ const options = {
   gestureHandling: 'greedy'
 };
 
-const MyMapComponent = withScriptjs(
-  withGoogleMap(
-    ({
-      refMap,
-      refMarker,
-      defaultCenter,
-      currentLocation,
-      currentCenter,
-      handleBoundsChanged,
-      onDragEnd
-    }) => (
-      <GoogleMap
-        ref={refMap}
-        defaultZoom={17}
-        options={options}
-        center={defaultCenter}
-        onBoundsChanged={useCallback(handleBoundsChanged)}
-        onDragEnd={onDragEnd}
-      >
-        <Marker icon={currentLocationImage} position={currentLocation} />
-        <Marker
-          ref={refMarker}
-          icon={LocationPinImage}
-          draggable={false}
-          position={currentCenter}
-        />
-      </GoogleMap>
-    )
+const MyMapComponent = withGoogleMap(
+  ({
+    refMap,
+    refMarker,
+    defaultCenter,
+    currentLocation,
+    currentCenter,
+    handleBoundsChanged,
+    onDragEnd
+  }) => (
+    <GoogleMap
+      ref={refMap}
+      defaultZoom={17}
+      options={options}
+      center={defaultCenter}
+      onBoundsChanged={useCallback(handleBoundsChanged)}
+      onDragEnd={onDragEnd}
+    >
+      <Marker icon={currentLocationImage} position={currentLocation} />
+      <Marker
+        ref={refMarker}
+        icon={LocationPinImage}
+        draggable={false}
+        position={currentCenter}
+      />
+    </GoogleMap>
   )
 );
 

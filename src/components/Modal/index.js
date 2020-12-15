@@ -71,7 +71,11 @@ const Modal = forwardRef(({ children }, ref) => {
 
   return (
     isShowing && (
-      <Container show={isShowing} opacity={opacity.toString()}>
+      <Container
+        show={isShowing}
+        opacity={opacity.toString()}
+        data-testid="modal-container"
+      >
         <Content>{children}</Content>
       </Container>
     )

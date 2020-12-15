@@ -29,7 +29,7 @@ import {
   CategoriesSection,
   ProductsSection
 } from './styles';
-import { categories } from '../../mocks';
+import { categories } from '../../__mocks__';
 
 import ZeIcon from '../../assets/images/icon_ze.png';
 import ZeIcon2x from '../../assets/images/icon_ze@2x.png';
@@ -89,9 +89,7 @@ function Products({ cookies, history, now }) {
       } else {
         setAddress(`${userAddress.streetName}, ${userAddress.streetNumber}`);
       }
-    } else {
-      history.push('/');
-    }
+    } else if (history) history.push('/');
   }, []);
 
   return (
@@ -135,6 +133,7 @@ function Products({ cookies, history, now }) {
                 className="button location-btn"
                 onClick={() => addressModal.current.openModal()}
                 title={address ? `${address}` : 'Informe seu endereço'}
+                data-testid="location-btn"
               >
                 <FaMapMarkerAlt className="fa fa-map-marker-alt" />
                 <span className="subtitle">Entregar em</span>
@@ -203,12 +202,13 @@ function Products({ cookies, history, now }) {
 }
 
 Products.defaultProps = {
-  now: new Date().toISOString()
+  now: new Date().toISOString(),
+  history: null
 };
 
 Products.propTypes = {
   cookies: instanceOf(Cookies).isRequired,
-  history: PropTypes.objectOf(PropTypes.any).isRequired,
+  history: PropTypes.objectOf(PropTypes.any),
   now: PropTypes.string
 };
 
