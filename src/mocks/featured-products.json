@@ -1,0 +1,17 @@
+[
+  { "id": 0,
+    "key": "skol-pilsen",
+    "name": "Skol Pilsen",
+    "description": "Uma cerveja leve e refrescante, perfeita para o calor desse nosso Brasilzão."
+  },
+  { "id": 1,
+    "key": "brahma-duplo-malte",
+    "name": "Brahma Duplo Malte",
+    "description": "Uma combinação incrível entre a leveza do Malte Pilsner e o sabor do Malte Munich."
+  },
+  { "id": 2,
+    "key": "jack-daniels",
+    "name": "Jack Daniel's",
+    "description": "Beber Jack Daniel's é como se você estivesse bebendo goles de pura história."
+  }
+]

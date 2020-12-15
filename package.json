@@ -1,0 +1,48 @@
+{
+  "name": "@ze-delivery-frontend-challenge/client",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Felipe Luiz <felipebluiz@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server --mode development --host 192.168.15.16"
+  },
+  "dependencies": {
+    "lodash": "^4.17.20",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-cookie": "^4.0.3",
+    "react-dom": "^16.13.1",
+    "react-google-maps": "^9.4.5",
+    "react-horizontal-scrolling-menu": "^0.7.8",
+    "react-icons": "^4.1.0",
+    "react-router-dom": "^5.2.0",
+    "styled-components": "^5.2.1",
+    "use-places-autocomplete": "^1.6.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.10.5",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.3.3",
+    "babel-eslint": "^10.1.0",
+    "babel-loader": "^8.1.0",
+    "babel-polyfill": "^6.26.0",
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb": "^18.2.0",
+    "eslint-config-prettier": "^6.13.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.4",
+    "eslint-plugin-react-hooks": "^4.1.2",
+    "file-loader": "^6.2.0",
+    "html-webpack-plugin": "^4.3.0",
+    "prettier": "^2.1.2",
+    "react-refresh": "^0.9.0",
+    "react-svg-loader": "^3.0.3",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}

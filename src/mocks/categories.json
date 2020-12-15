@@ -1,0 +1,15 @@
+[
+  { "id": 0, "label": "#cerveja", "name": "Cerveja", "imageName": "cerveja.jpg" },
+  { "id": 1, "label": "#refrigerante", "name": "Refrigerante", "imageName": "refrigerante.jpg" },
+  { "id": 2, "label": "#whisky", "name": "Whisky", "imageName": "whisky.jpg" },
+  { "id": 3, "label": "#vodka", "name": "Vodka", "imageName": "vodka.jpg" },
+  { "id": 4, "label": "#energético", "name": "Energético", "imageName": "energetico.jpg" },
+  { "id": 5, "label": "#vinho", "name": "Vinho", "imageName": "vinho.jpg" },
+  { "id": 6, "label": "#gin", "name": "Gin", "imageName": "gin.jpg" },
+  { "id": 7, "label": "#cachaça", "name": "Cachaça", "imageName": "cachaca.jpg" },
+  { "id": 8, "label": "#suco", "name": "Suco", "imageName": "suco.jpg" },
+  { "id": 9, "label": "#água", "name": "Água", "imageName": "agua.jpg" },
+  { "id": 10, "label": "#petiscos", "name": "Petiscos", "imageName": "petiscos.jpg" },
+  { "id": 11, "label": "#gelo", "name": "Gelo", "imageName": "gelo.jpg" },
+  { "id": 12, "label": "#carvão", "name": "Carvão", "imageName": "carvao.jpg" }
+]
