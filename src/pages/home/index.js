@@ -10,7 +10,7 @@ import { useCookies } from 'react-cookie';
 import PropTypes from 'prop-types';
 import ScrollMenu from 'react-horizontal-scrolling-menu';
 
-import FeaturedProductCard from '../../components/Home/Cards/Products/Featured';
+import FeaturedProductCard from './Cards/Product';
 import Footer from '../../components/Footer';
 import AddressModal from '../../components/Modal/Address';
 import { categories, featuredProducts, coverageAreas } from '../../mocks';

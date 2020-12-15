@@ -4,9 +4,9 @@ import { FaEye, FaShoppingBag } from 'react-icons/fa';
 
 import { Container } from './styles';
 
-function Categories({ index, item }) {
+function Categories({ lastItem, index, item }) {
   return (
-    <Container index={index} onClick={() => {}}>
+    <Container lastItem={lastItem} index={index} onClick={() => {}}>
       <div className="image-container">
         <img src={item.images[0].url} alt={item.title} draggable="false" />
       </div>
@@ -18,19 +18,32 @@ function Categories({ index, item }) {
         }).format(item.productVariants[0].price)}
       </span>
       <div className="buttons-container">
-        <button type="button" onClick={() => {}} className="preview-btn">
+        <div
+          role="button"
+          className="button preview-btn"
+          tabIndex={0}
+          onClick={() => {}}
+          onKeyPress={() => {}}
+        >
           <FaEye className="fa fa-eye" />
-        </button>
-        <button type="button" onClick={() => {}} className="buy-btn">
+        </div>
+        <div
+          role="button"
+          className="button buy-btn"
+          tabIndex={0}
+          onClick={() => {}}
+          onKeyPress={() => {}}
+        >
           <FaShoppingBag className="fa fa-shopping-bag" />
           <span>Comprar</span>
-        </button>
+        </div>
       </div>
     </Container>
   );
 }
 
 Categories.propTypes = {
+  lastItem: PropTypes.bool.isRequired,
   index: PropTypes.number.isRequired,
   item: PropTypes.objectOf(PropTypes.any).isRequired
 };

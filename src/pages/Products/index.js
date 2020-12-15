@@ -8,14 +8,18 @@ import {
   FaAngleRight,
   FaTimes
 } from 'react-icons/fa';
-import { useCookies } from 'react-cookie';
-import PropTypes from 'prop-types';
+import { withCookies, Cookies } from 'react-cookie';
+import PropTypes, { instanceOf } from 'prop-types';
 import ScrollMenu from 'react-horizontal-scrolling-menu';
+import { useQuery } from '@apollo/client';
+import { POC_SEARCH_METHOD, ALL_CATEGORIES_SEARCH } from '../../queries';
 
 import Footer from '../../components/Footer';
 import AddressModal from '../../components/Modal/Address';
-import CategoryCard from '../../components/Products/Cards/Category';
-import ProductCard from '../../components/Products/Cards/Product';
+import ProductsCategory from './Category';
+import CategoryCard from './Cards/Category';
+import Shimmer from './Shimmer';
+import Empty from './Empty';
 
 import { Container } from '../../assets/globalStyles';
 import {
@@ -25,19 +29,34 @@ import {
   CategoriesSection,
   ProductsSection
 } from './styles';
-import { categories, products } from '../../mocks';
+import { categories } from '../../mocks';
 
 import ZeIcon from '../../assets/images/icon_ze.png';
 import ZeIcon2x from '../../assets/images/icon_ze@2x.png';
 
-function Products({ history }) {
+function Products({ cookies, history, now }) {
   const addressModal = useRef(null);
-  const productsScrollMenu = useRef(null);
-  const [cookies] = useCookies(['userAddress']);
   const [address, setAddress] = useState(null);
   const [searchInputFocus, setSearchFocus] = useState(false);
   const [searchInputValue, setSearchInputValue] = useState('');
   const [searchNavBarIsOpen, setSearchNavBarIsOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  const { loading: loadingPoc, data: pocData } = useQuery(POC_SEARCH_METHOD, {
+    variables: {
+      algorithm: 'NEAREST',
+      lat: cookies.get('userAddress')?.lat,
+      long: cookies.get('userAddress')?.lng,
+      now
+    },
+    fetchPolicy: 'network-only'
+  });
+  const pocId = pocData?.pocSearch[0]?.id;
+  const { data: categoriesData } = useQuery(ALL_CATEGORIES_SEARCH, {
+    skip: !pocId,
+    variables: { id: pocId, search: '', categoryId: null },
+    fetchPolicy: 'network-only'
+  });
 
   function handleInputChange(e) {
     setSearchInputValue(e.target.value);
@@ -48,6 +67,12 @@ function Products({ history }) {
   }
 
   useEffect(() => {
+    if (!loadingPoc && !pocId) {
+      setLoading(false);
+    }
+  }, [loadingPoc]);
+
+  useEffect(() => {
     if (searchNavBarIsOpen) {
       document.body.style.overflowY = 'hidden';
     } else {
@@ -56,13 +81,13 @@ function Products({ history }) {
   }, [searchNavBarIsOpen]);
 
   useEffect(() => {
-    if (cookies.userAddress) {
-      if (cookies.userAddress.geolocation) {
-        setAddress(`Próximo de ${cookies.userAddress.district}`);
+    const userAddress = cookies.get('userAddress');
+
+    if (userAddress) {
+      if (userAddress.geolocation) {
+        setAddress(`Próximo de ${userAddress.district}`);
       } else {
-        setAddress(
-          `${cookies.userAddress.streetName}, ${cookies.userAddress.streetNumber}`
-        );
+        setAddress(`${userAddress.streetName}, ${userAddress.streetNumber}`);
       }
     } else {
       history.push('/');
@@ -138,47 +163,38 @@ function Products({ history }) {
           </div>
         </Container>
       </Header>
-      <CategoriesSection>
-        <div className="categories-section-container">
-          <ScrollMenu
-            data={categories.map((category, i) => (
-              <CategoryCard
-                key={category.id}
-                item={category}
-                lastItem={i + 1 === categories.length}
-              />
-            ))}
-            hideSingleArrow
-            arrowLeft={<FaAngleLeft className="fa fa-angle-left" />}
-            arrowRight={<FaAngleRight className="fa fa-angle-right" />}
-            innerWrapperStyle={{ padding: '30px 0' }}
-            alignCenter={false}
-            wheel={false}
-          />
-        </div>
-      </CategoriesSection>
-      <ProductsSection>
-        <div className="categories-section-container">
-          <div className="categories-section-heading">
-            <h2>Cervejas</h2>
-            <div className="controls">
-              <a href="#">Ver mais</a>
-            </div>
+      {!loading && categoriesData && (
+        <CategoriesSection>
+          <div className="categories-section-container">
+            <ScrollMenu
+              data={categories.map((category, i) => (
+                <CategoryCard
+                  key={category.id}
+                  item={category}
+                  lastItem={i + 1 === categories.length}
+                />
+              ))}
+              hideSingleArrow
+              arrowLeft={<FaAngleLeft className="fa fa-angle-left" />}
+              arrowRight={<FaAngleRight className="fa fa-angle-right" />}
+              innerWrapperStyle={{ padding: '30px 0' }}
+              alignCenter={false}
+              wheel={false}
+            />
           </div>
-          <ScrollMenu
-            ref={productsScrollMenu}
-            data={products.slice(0, 12).map((product, i) => (
-              <ProductCard index={i} key={product.id} item={product} />
-            ))}
-            hideSingleArrow
-            arrowLeft={<FaAngleLeft className="fa fa-angle-left" />}
-            arrowRight={<FaAngleRight className="fa fa-angle-right" />}
-            innerWrapperStyle={{ display: 'flex', padding: '30px 0' }}
-            itemStyle={{ display: 'table-cell', outline: 'none' }}
-            alignCenter={false}
-            wheel={false}
+        </CategoriesSection>
+      )}
+      <ProductsSection>
+        {categoriesData?.allCategory.map((category) => (
+          <ProductsCategory
+            key={category.id}
+            pocId={pocId}
+            category={category}
+            setLoading={setLoading}
           />
-        </div>
+        ))}
+        {loading && <Shimmer />}
+        {!loading && !categoriesData && <Empty />}
       </ProductsSection>
       <Footer />
       <AddressModal ref={addressModal} />
@@ -186,8 +202,14 @@ function Products({ history }) {
   );
 }
 
-Products.propTypes = {
-  history: PropTypes.objectOf(PropTypes.any).isRequired
+Products.defaultProps = {
+  now: new Date().toISOString()
 };
 
-export default Products;
+Products.propTypes = {
+  cookies: instanceOf(Cookies).isRequired,
+  history: PropTypes.objectOf(PropTypes.any).isRequired,
+  now: PropTypes.string
+};
+
+export default withCookies(Products);

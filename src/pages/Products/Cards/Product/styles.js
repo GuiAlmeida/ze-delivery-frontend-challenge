@@ -57,12 +57,18 @@ export const Container = styled.button`
     align-items: center;
     margin-top: 20px;
 
-    button {
+    .button {
       height: 40px;
       border-radius: 6px;
       display: flex;
       justify-content: center;
       align-items: center;
+      transition: all 300ms ease-out;
+      outline: none;
+
+      :hover {
+        opacity: 0.8;
+      }
     }
 
     .preview-btn {
@@ -104,7 +110,7 @@ export const Container = styled.button`
   @media screen and (min-width: 960px) {
     width: 230px;
     margin-left: 0;
-    margin-right: ${(props) => (props.index === 11 ? '0' : '20px')};
+    margin-right: ${(props) => (props.lastItem ? '0' : '20px')};
     padding: 15px;
 
     .image-container {

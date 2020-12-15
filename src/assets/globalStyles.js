@@ -160,6 +160,7 @@ export const GlobalStyles = createGlobalStyle`
     margin-top: 10px;
     margin-left: 5px;
     color: #e50000;
+    text-align: left;
   }
 
   input, textarea, button, select, a, div {
