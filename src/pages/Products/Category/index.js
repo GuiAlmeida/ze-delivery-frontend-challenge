@@ -26,7 +26,7 @@ function Categories({ pocId, category, setLoading }) {
     return null;
   }
 
-  setTimeout(() => setLoading(false), 500);
+  setTimeout(() => setLoading(false), 0);
 
   return (
     <Container>
